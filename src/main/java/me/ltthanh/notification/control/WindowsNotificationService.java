@@ -9,6 +9,7 @@ public class WindowsNotificationService {
     public void sendNotification(String title, String message, MessageType messageType) {
         if (!SystemTray.isSupported()) {
             System.out.println(MessageFormat.format("{0} - {1}. The toaster didn't appear because your system not support.", title, message));
+            return;
         }
 
         try {
