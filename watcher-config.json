@@ -1,0 +1,8 @@
+{
+    "bashScriptPath": "/home/cloud_user/workspace/codespace/watcher/script/hello.sh",
+    "pollIntervalInSecond": 1,
+    "observeredDirectories": [
+        "/home/cloud_user/workspace/codespace/watcher/monitored",
+        "/home/cloud_user/workspace/codespace/watcher/monitored-2"
+    ]
+}
