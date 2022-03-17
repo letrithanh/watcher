@@ -20,7 +20,7 @@ public class WatcherRegister {
         FileAlterationMonitor monitor = new FileAlterationMonitor(watcherConfig.getPollIntervalInMilisecond());
         for (String directory: watcherConfig.getObserveredDirectories()) {
             FileAlterationObserver observer = new FileAlterationObserver(directory);
-            FileAlterationListener listener = new WatcherListener(watcherConfig.getBashScriptPath());
+            FileAlterationListener listener = new WatcherListener(watcherConfig);
             observer.addListener(listener);
             monitor.addObserver(observer);
         }

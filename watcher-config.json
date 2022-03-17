@@ -4,5 +4,6 @@
     "observeredDirectories": [
         "/home/cloud_user/workspace/codespace/watcher/monitored",
         "/home/cloud_user/workspace/codespace/watcher/monitored-2"
-    ]
+    ],
+    "notification": true
 }

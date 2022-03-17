@@ -2,26 +2,32 @@ package me.ltthanh.watcher.control;
 
 import java.awt.TrayIcon.MessageType;
 import java.io.File;
+import java.util.Objects;
 
 import org.apache.commons.io.monitor.FileAlterationListener;
 import org.apache.commons.io.monitor.FileAlterationObserver;
 
 import me.ltthanh.bash.control.ExecuteBashService;
+import me.ltthanh.config.entity.WatcherConfig;
 import me.ltthanh.notification.control.WindowsNotificationService;
 
 public class WatcherListener implements FileAlterationListener {
 
-    private String bashPathForExecutionOnChanged;
+    private WatcherConfig watcherConfig;
 
-    public WatcherListener(String bashPathForExecutionOnChanged) {
-        this.bashPathForExecutionOnChanged = bashPathForExecutionOnChanged;
+    public WatcherListener(WatcherConfig watcherConfig) {
+        Objects.requireNonNull(watcherConfig);
+        this.watcherConfig = watcherConfig;
     }
 
     private void onAnyEventTriggered() {
         ExecuteBashService executeBashService = new ExecuteBashService();
-        executeBashService.execute(bashPathForExecutionOnChanged);
-        WindowsNotificationService windowsNotificationService = new WindowsNotificationService();
-        windowsNotificationService.sendNotification("Executed", "Your script was executed", MessageType.INFO);
+        executeBashService.execute(watcherConfig.getBashScriptPath());
+
+        if (watcherConfig.isNotification()) {
+            WindowsNotificationService windowsNotificationService = new WindowsNotificationService();
+            windowsNotificationService.sendNotification("Executed", "Your script was executed", MessageType.INFO);
+        }
     }
     
     @Override

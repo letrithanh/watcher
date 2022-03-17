@@ -10,6 +10,8 @@ public class WatcherConfig {
 
     private List<String> observeredDirectories;
 
+    private boolean notification;
+
     public String getBashScriptPath() {
         return bashScriptPath;
     }
@@ -36,6 +38,14 @@ public class WatcherConfig {
 
     public void setObserveredDirectories(List<String> observeredDirectories) {
         this.observeredDirectories = observeredDirectories;
+    }
+
+    public boolean isNotification() {
+        return notification;
+    }
+
+    public void setNotification(boolean notification) {
+        this.notification = notification;
     }
 
 }
